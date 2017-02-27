@@ -1,6 +1,3 @@
-///<reference path="react-dnd-test-backend.d.ts" />
-"use strict";
-
 // Test adapted from the ReactDnD chess game tutorial:
 // http://gaearon.github.io/react-dnd/docs-tutorial.html
 
