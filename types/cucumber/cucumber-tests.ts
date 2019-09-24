@@ -1,5 +1,5 @@
 import * as assert from "power-assert";
-import { setWorldConstructor, defineParameterType, After, AfterAll, Before, BeforeAll, Given, When, Then } from "cucumber";
+import { setDefinitionFunctionWrapper, setWorldConstructor, defineParameterType, After, AfterAll, Before, BeforeAll, Given, When, Then } from "cucumber";
 import cucumber = require("cucumber");
 
 type Callback = cucumber.CallbackStepDefinition;
@@ -11,6 +11,7 @@ const Status = cucumber.Status;
 declare module "cucumber" {
     interface World {
         visit(url: string, callback: CallbackStepDefinition): void;
+        toInt(value: string): number;
     }
 }
 
@@ -21,6 +22,7 @@ function StepSampleWithoutDefineSupportCode() {
         this.visit = (url: string, callback: Callback) => {
             callback(null, 'pending');
         };
+        this.toInt = parseInt;
     });
 
     Before((scenarioResult: HookScenarioResult, callback: Callback) => {
@@ -164,8 +166,42 @@ function StepSampleWithoutDefineSupportCode() {
         useForSnippets: false
     });
 
+    defineParameterType({
+        regexp: /(one) (two)/,
+        transformer: (x, y) => x + y,
+        name: 'param',
+        preferForRegexpMatch: false,
+        useForSnippets: false
+    });
+
+    defineParameterType({
+        regexp: /123/,
+        transformer(val) {
+            return this.toInt(val);
+        },
+        name: 'param',
+        preferForRegexpMatch: false,
+        useForSnippets: false
+    });
+
     Given('a {param} step', param => {
         assert.equal(param, 'PARTICULAR');
+    });
+
+    Given('a step with custom options for function wrapper', { timeout: 1, wrapperOptions: { retry: 2 } }, param => {
+        console.log('Mock step');
+    });
+
+    Given('a step with custom options for function wrapper with any complext wrapper options', { wrapperOptions: { moreOptions: { nested: [] } } }, param => {
+        console.log('Mock step');
+    });
+
+    setDefinitionFunctionWrapper((fn: () => void) => {
+        return fn;
+    });
+    setDefinitionFunctionWrapper((fn: () => void, options: {}) => {
+        console.log(`Custom Options passed into step`);
+        return fn;
     });
 }
 

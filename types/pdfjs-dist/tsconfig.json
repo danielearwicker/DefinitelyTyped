@@ -15,11 +15,11 @@
         ],
         "types": [],
         "noEmit": true,
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true
+        "forceConsistentCasingInFileNames": true
     },
     "files": [
         "index.d.ts",
-        "pdfjs-dist-tests.ts"
+        "pdfjs-dist-tests.ts",
+        "webpack/index.d.ts"
     ]
 }

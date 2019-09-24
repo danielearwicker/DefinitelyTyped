@@ -115,7 +115,7 @@ b = Number.isSafeInteger(i);
 i = Number.MAX_SAFE_INTEGER;
 i = Number.MIN_SAFE_INTEGER;
 i = Number.parseFloat(s);
-i = Number.parseInt(s);
+i = Number.parseInt(s); // tslint:disable-line radix
 i = Number.parseInt(s, i);
 i = Math.clz32(i);
 i = Math.imul(i, i);
@@ -400,17 +400,6 @@ point = Object.define(point, a);
 point = Object.make(point, a);
 
 // #############################################################################################
-// Console - https://github.com/zloirock/core-js/#console
-// Modules: core.log
-// #############################################################################################
-
-// Non-standard
-log(a, a, a);
-log.log(a, a, a);
-log.enable();
-log.disable();
-
-// #############################################################################################
 // Dict - https://github.com/zloirock/core-js/#dict
 // Modules: core.dict
 // #############################################################################################
@@ -418,7 +407,7 @@ log.disable();
 // Non-standard
 point = dictOfPoint[s];
 point = dictOfPoint[i];
-point = dictOfPoint[sym];
+// point = dictOfPoint[sym];
 dictOfPoint = new Dict(dictOfPoint);
 dictOfAny = new Dict(point);
 dictOfPoint = Dict(dictOfPoint);

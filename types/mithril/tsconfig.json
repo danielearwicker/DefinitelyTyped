@@ -10,7 +10,6 @@
         "strictNullChecks": true,
         "strictFunctionTypes": false,
         "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true,
         "noEmit": true,
         "baseUrl": "../",
         "typeRoots": [
@@ -36,7 +35,6 @@
         "render.d.ts",
         "request.d.ts",
         "route.d.ts",
-        "withAttr.d.ts",
         "stream/index.d.ts"
     ],
     "atom": {

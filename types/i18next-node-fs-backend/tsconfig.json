@@ -12,15 +12,9 @@
         "typeRoots": [
             "../"
         ],
-        "paths": {
-            "i18next": [
-                "i18next/v2"
-            ]
-        },
         "types": [],
         "noEmit": true,
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true
+        "forceConsistentCasingInFileNames": true
     },
     "files": [
         "index.d.ts",
